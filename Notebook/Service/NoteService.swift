@@ -23,12 +23,13 @@ enum NoteFactory {
 // MARK: - Protocol
 protocol NoteServiceProtocol {
     func fetchCurrentNote() -> Note?
+    func createNote(_ note: Note)
     func saveNote(_ note: Note)
     func updateNote(_ note: Note)
     func deleteNote(_ note: Note)
 }
 
-// MARK: - swiftData Service
+// MARK: - SWIFTDATA Service
 final class NoteService: NoteServiceProtocol {
     private let context: ModelContext
 
@@ -56,6 +57,10 @@ final class NoteService: NoteServiceProtocol {
         }
     }
 
+    func createNote(_ note: Note) {
+     
+    }
+    
     func updateNote(_ note: Note) {
         do {
             if fetchCurrentNote() != nil {
@@ -99,6 +104,10 @@ final class MockNoteService: NoteServiceProtocol {
     func saveNote(_ note: Note) {
         self.mockNote = note
         print("✅ (Mock) Пользователь сохранен.")
+    }
+    
+    func createNote(_ note: Note) {
+     
     }
     
     func updateNote(_ note: Note) {

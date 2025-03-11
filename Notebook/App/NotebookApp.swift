@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
+import SwiftfulRouting
 
 @main
 struct NotebookApp: App {
+    private let container = AppContainer() // ✅ Используем новый контейнер
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RouterView { _ in
+                ContentView()
+                    .environmentObject(container.noteViewModel)   // ✅ Передаем ViewModel юзера
+                    .modelContainer(container.modelContainer)    // ✅ Передаем общий SwiftData контейнер
+            }
         }
     }
 }
